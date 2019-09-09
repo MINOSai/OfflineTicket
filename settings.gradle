@@ -1,0 +1,2 @@
+include ':app', ':model', ':local', ':remote', ':repository', ':common', ':navigation'
+rootProject.name='Offline Ticket'

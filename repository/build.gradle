@@ -1,0 +1,14 @@
+apply plugin: 'com.android.library'
+apply from: '../android_commons.gradle'
+
+dependencies {
+
+    implementation project(Modules.remote)
+    implementation project(Modules.local)
+    api project(Modules.model)
+
+    implementation Libs.lifecycleExtensions
+    implementation Libs.lifecycleLiveData
+    implementation Libs.coroutinesCore
+    implementation Libs.coroutinesAndroid
+}

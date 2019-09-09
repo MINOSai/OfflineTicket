@@ -1,0 +1,8 @@
+apply plugin: 'com.android.library'
+apply from: '../android_commons.gradle'
+
+dependencies {
+    api Libs.navigation
+    api Libs.navigationFrag
+    implementation project(Modules.navigation)
+}
