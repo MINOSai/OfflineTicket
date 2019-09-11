@@ -9,6 +9,15 @@ android {
 }
 
 dependencies {
+
+    implementation project(Modules.common)
+    implementation project(Modules.local)
+    implementation project(Modules.remote)
+    implementation project(Modules.repository)
+
     implementation Libs.androidxAppCompat
     implementation Libs.constraintLayout
+
+    implementation Libs.koinAndroid
+    implementation Libs.koinViewModel
 }

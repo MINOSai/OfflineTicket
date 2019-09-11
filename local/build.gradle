@@ -9,4 +9,7 @@ dependencies {
     implementation Libs.roomKtx
     kapt Libs.roomCompiler
 
+    implementation Libs.koinAndroid
+    implementation Libs.koinViewModel
+
 }

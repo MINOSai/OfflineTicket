@@ -3,6 +3,7 @@ object Modules {
     const val model = ":model"
     const val remote = ":remote"
     const val local = ":local"
+    const val repository = ":repository"
     const val common = ":common"
     const val navigation = ":navigation"
 }
@@ -25,10 +26,10 @@ object Versions {
     //Kotlin
     const val ktx = "1.1.0"
     const val coroutines = "1.3.0-RC"
+    const val koin = "2.0.1"
 
     // AAC
     const val lifecycle = "2.2.0-alpha03"
-//    const val lifecycleLiveData = ""
     const val room = "2.2.0-beta01"
     const val navigation = "2.1.0"
     const val paging = "2.1.0"
@@ -59,6 +60,8 @@ object Libs {
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:" + Config.kotlinVersion
     const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:" + Versions.coroutines
     const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:" + Versions.coroutines
+    const val koinAndroid ="org.koin:koin-android:" + Versions.koin
+    const val koinViewModel = "org.koin:koin-android-viewmodel:" + Versions.koin
 
     //AAC
     const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:" + Versions.lifecycle

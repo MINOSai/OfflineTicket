@@ -7,22 +7,22 @@ import com.minosai.model.Result
 import com.minosai.remote.conductor.ConductorWebClient
 import kotlinx.coroutines.Dispatchers
 
-class ConductorRepository (private val conductorWebClient: ConductorWebClient,
-                           private val conductorDao: ConductorDao) {
+class ConductorRepository (private val webClient: ConductorWebClient,
+                           private val dao: ConductorDao) {
 
     fun uploadTickets() = liveData(Dispatchers.IO) {
         emit(Result.loading())
 
-        val tickets = conductorDao.getTicketsToUpload()
+        val tickets = dao.getTicketsToUpload()
 
-        val response = conductorWebClient.uploadTickets(tickets)
+        val response = webClient.uploadTickets(tickets)
 
         when (response.status) {
             Result.Status.SUCCESS -> {
-                Result.success("Tickets uploaded successfully")
+                emit(Result.success("Tickets uploaded successfully"))
             }
             Result.Status.ERROR -> {
-                emit(Result.error<String>(response.message!!))
+                emit(Result.error(response.message!!))
             }
             else -> {
 
@@ -33,13 +33,13 @@ class ConductorRepository (private val conductorWebClient: ConductorWebClient,
     fun getAllTickets() = liveData(Dispatchers.IO) {
         emit(Result.loading())
 
-        val source = conductorDao.getAllTickets().map { Result.success(it) }
+        val source = dao.getAllTickets().map { Result.success(it) }
         emitSource(source)
 
-        val response = conductorWebClient.fetchTickets()
+        val response = webClient.fetchTickets()
         when (response.status) {
             Result.Status.SUCCESS -> {
-                conductorDao.save(response.data!!)
+                dao.save(response.data!!)
             }
             Result.Status.ERROR -> {
                 emit(Result.error(response.message!!))
