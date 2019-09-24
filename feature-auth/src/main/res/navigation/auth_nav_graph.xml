@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/auth_nav_graph"
+    app:startDestination="@id/profileFragment">
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.minosai.feature_auth.fragments.ProfileFragment"
+        android:label="Select Profile">
+        <action
+            android:id="@+id/action_profileFragment_to_loginFragment2"
+            app:destination="@id/loginFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment2"
+        android:name="com.minosai.feature_auth.fragments.LoginFragment"
+        android:label="Enter Phone Number">
+        <action
+            android:id="@+id/action_loginFragment2_to_otpFragment"
+            app:destination="@id/otpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/otpFragment"
+        android:name="com.minosai.feature_auth.fragments.OtpFragment"
+        android:label="Verify OTP" />
+</navigation>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/passenger_nav_graph"
+    app:startDestination="@id/passengerHomeFragment">
+
+    <fragment
+        android:id="@+id/passengerHomeFragment"
+        android:name="com.minosai.feature_passenger.home.PassengerHomeFragment"
+        android:label="PassengerHomeFragment" >
+        <action
+            android:id="@+id/action_passengerHomeFragment_to_balanceFragment"
+            app:destination="@id/balanceFragment" />
+        <action
+            android:id="@+id/action_passengerHomeFragment_to_sendDetailsFragment"
+            app:destination="@id/sendDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/balanceFragment"
+        android:name="com.minosai.feature_passenger.balance.BalanceFragment"
+        android:label="BalanceFragment" />
+    <fragment
+        android:id="@+id/sendDetailsFragment"
+        android:name="com.minosai.feature_passenger.details.SendDetailsFragment"
+        android:label="SendDetailsFragment" >
+        <action
+            android:id="@+id/action_sendDetailsFragment_to_receiveTicketFragment"
+            app:destination="@id/receiveTicketFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/receiveTicketFragment"
+        android:name="com.minosai.feature_passenger.ticket.ReceiveTicketFragment"
+        android:label="ReceiveTicketFragment" />
+</navigation>

@@ -1,11 +1,14 @@
 object Modules {
     const val app = ":app"
-    const val model = ":model"
-    const val remote = ":remote"
-    const val local = ":local"
-    const val repository = ":repository"
     const val common = ":common"
+    const val featureAuth = ":feature-auth"
+    const val featureConductor = ":feature-conductor"
+    const val featurePassenger = ":feature-passenger"
+    const val local = ":local"
+    const val model = ":model"
     const val navigation = ":navigation"
+    const val remote = ":remote"
+    const val repository = ":repository"
 }
 
 object Config {
@@ -26,7 +29,7 @@ object Versions {
     //Kotlin
     const val ktx = "1.1.0"
     const val coroutines = "1.3.0-RC"
-    const val koin = "2.0.1"
+    const val koin = "1.0.2"
 
     // AAC
     const val lifecycle = "2.2.0-alpha03"
@@ -43,6 +46,8 @@ object Versions {
     const val fragment = "1.2.0-alpha03"
     const val material = "1.0.0"
     const val recyclerView = "1.1.0-beta04"
+
+    const val chirp = "3.8.+"
 
     //Test
     const val junit = "4.12"
@@ -85,6 +90,8 @@ object Libs {
     const val fragment = "androidx.fragment:fragment-ktx:" + Versions.fragment
     const val recyclerView = "androidx.recyclerview:recyclerview:" + Versions.recyclerView
     const val materialComponents = "com.google.android.material:material:" + Versions.material
+
+    const val chirpSdk = "io.chirp:chirpsdk:" + Versions.chirp
 
     //Test
     const val junit = "junit:junit:" + Versions.junit

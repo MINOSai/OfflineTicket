@@ -1,0 +1,18 @@
+apply plugin: 'com.android.library'
+apply from: '../android_commons.gradle'
+apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
+dependencies {
+    api project(Modules.common)
+    implementation project(Modules.repository)
+//    implementation project(Modules.navigation)
+
+    implementation Libs.koinAndroid
+    implementation Libs.koinViewModel
+    implementation Libs.constraintLayout
+    implementation Libs.lifecycleExtensions
+    implementation Libs.lifecycleViewModel
+    implementation Libs.navigation
+    implementation Libs.navigationFrag
+}

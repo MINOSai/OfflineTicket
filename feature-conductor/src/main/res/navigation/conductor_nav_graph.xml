@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/conductor_nav_graph"
+    app:startDestination="@id/conductorHomeFragment">
+
+    <fragment
+        android:id="@+id/conductorHomeFragment"
+        android:name="com.minosai.feature_conductor.home.ConductorHomeFragment"
+        android:label="ConductorHomeFragment" >
+        <action
+            android:id="@+id/action_conductorHomeFragment_to_receiveDetailsFragment"
+            app:destination="@id/receiveDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/receiveDetailsFragment"
+        android:name="com.minosai.feature_conductor.ticket.fragments.ReceiveDetailsFragment"
+        android:label="ReceiveDetailsFragment" >
+        <action
+            android:id="@+id/action_receiveDetailsFragment_to_sendTicketFragment"
+            app:destination="@id/sendTicketFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sendTicketFragment"
+        android:name="com.minosai.feature_conductor.ticket.fragments.SendTicketFragment"
+        android:label="SendTicketFragment" />
+</navigation>

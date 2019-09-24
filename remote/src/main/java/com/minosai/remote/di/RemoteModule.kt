@@ -6,7 +6,7 @@ import com.minosai.remote.conductor.ConductorWebClient
 import com.minosai.remote.conductor.ConductorWebService
 import com.minosai.remote.passenger.PassengerWebClient
 import com.minosai.remote.passenger.PassengerWebService
-import org.koin.dsl.module
+import org.koin.dsl.module.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

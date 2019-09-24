@@ -1,0 +1,11 @@
+apply from: '../android_features.gradle'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+dependencies {
+    api project(Modules.remote)
+    api project(Modules.local)
+
+    implementation Libs.chirpSdk
+    implementation Libs.gson
+}

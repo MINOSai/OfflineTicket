@@ -29,6 +29,8 @@ dependencies {
     implementation Libs.androidxCore
     implementation Libs.androidxAppCompat
     implementation Libs.kotlinStdLib
+
+    implementation project(Modules.common)
 }
 
 repositories {

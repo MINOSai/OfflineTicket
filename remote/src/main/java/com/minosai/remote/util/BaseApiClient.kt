@@ -4,7 +4,7 @@ import com.minosai.model.Result
 import retrofit2.Response
 import java.lang.Exception
 
-abstract class BaseApiClient {
+open class BaseApiClient {
 
     protected suspend fun <T> getResult(request: suspend () -> Response<T>): Result<T> {
         try {

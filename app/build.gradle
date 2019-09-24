@@ -11,7 +11,12 @@ android {
 dependencies {
 
     implementation project(Modules.common)
+    implementation project(Modules.featureAuth)
+    implementation project(Modules.featureConductor)
+    implementation project(Modules.featurePassenger)
     implementation project(Modules.local)
+    implementation project(Modules.model)
+    implementation project(Modules.navigation)
     implementation project(Modules.remote)
     implementation project(Modules.repository)
 
