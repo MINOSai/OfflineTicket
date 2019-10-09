@@ -17,10 +17,6 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class ProfileFragment : BaseFragment() {
 
-    companion object {
-        fun newInstance() = ProfileFragment()
-    }
-
     private val viewModel by sharedViewModel<AuthViewModel>()
 
     override fun getViewModel(): BaseViewModel = viewModel
@@ -30,10 +26,6 @@ class ProfileFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.profile_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

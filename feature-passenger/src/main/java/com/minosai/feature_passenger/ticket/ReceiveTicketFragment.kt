@@ -1,6 +1,7 @@
 package com.minosai.feature_passenger.ticket
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,22 +44,12 @@ class ReceiveTicketFragment : BaseChirpFragment() {
     }
 
     private fun receiveTicket() {
-        context?.toast("onRecieved")
         chirpReceive.onReceived { payload, _ ->
-            context?.toast(payload.toString())
             activity?.runOnUiThread {
                 payload?.let {
                     val identifier = String(it)
                     rec_ticket_text_placeholder.text = identifier
                     rec_ticket_button_retry.show()
-                }
-            }
-        }
-
-        chirpReceive.onReceived { payload, _ ->
-            activity?.runOnUiThread {
-                payload?.let {
-                    context?.toast(String(it))
                 }
             }
         }

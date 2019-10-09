@@ -16,10 +16,6 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class OtpFragment : BaseFragment() {
 
-    companion object {
-        fun newInstance() = OtpFragment()
-    }
-
     private val viewModel by sharedViewModel<AuthViewModel>()
 
     override fun getViewModel(): BaseViewModel = viewModel
@@ -29,10 +25,6 @@ class OtpFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.otp_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

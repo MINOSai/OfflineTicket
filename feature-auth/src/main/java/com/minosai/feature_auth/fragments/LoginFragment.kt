@@ -14,10 +14,6 @@ import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class LoginFragment : BaseFragment() {
 
-    companion object {
-        fun newInstance() = LoginFragment()
-    }
-
     private val viewModel by sharedViewModel<AuthViewModel>()
 
     override fun getViewModel(): BaseViewModel = viewModel
@@ -27,10 +23,6 @@ class LoginFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.login_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

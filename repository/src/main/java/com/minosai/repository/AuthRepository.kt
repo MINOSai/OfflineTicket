@@ -3,11 +3,10 @@ package com.minosai.repository
 import android.content.SharedPreferences
 import androidx.lifecycle.liveData
 import com.minosai.common.Constants
+import com.minosai.local.util.PreferenceHelper.set
 import com.minosai.model.Result
 import com.minosai.remote.auth.AuthWebClient
 import kotlinx.coroutines.Dispatchers
-import com.minosai.local.util.PreferenceHelper.get
-import com.minosai.local.util.PreferenceHelper.set
 
 class AuthRepository (private val webClient: AuthWebClient,
                       private val prefs: SharedPreferences) {
