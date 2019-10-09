@@ -44,11 +44,6 @@ class ReceiveDetailsFragment : BaseChirpFragment() {
             findNavController()
                 .navigate(R.id.action_receiveDetailsFragment_to_sendTicketFragment)
         }
-
-//        rec_details_button_test.setOnClickListener {
-//            findNavController()
-//                .navigate(R.id.action_receiveDetailsFragment_to_sendTicketFragment)
-//        }
     }
 
     private fun receiveDetails() {
