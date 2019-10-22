@@ -8,7 +8,7 @@ import com.minosai.remote.conductor.ConductorWebClient
 import kotlinx.coroutines.Dispatchers
 
 class ConductorRepository (private val webClient: ConductorWebClient,
-                           private val dao: ConductorDao) {
+                           private val dao: ConductorDao) : BaseRepo() {
 
     fun uploadTickets() = liveData(Dispatchers.IO) {
         emit(Result.loading())
@@ -30,25 +30,16 @@ class ConductorRepository (private val webClient: ConductorWebClient,
         }
     }
 
-    fun getAllTickets() = liveData(Dispatchers.IO) {
-        emit(Result.loading())
-
-        val source = dao.getAllTickets().map { Result.success(it) }
-        emitSource(source)
-
-        val response = webClient.fetchTickets()
-        when (response.status) {
-            Result.Status.SUCCESS -> {
-                dao.save(response.data!!)
-            }
-            Result.Status.ERROR -> {
-                emit(Result.error(response.message!!))
-                emitSource(source)
-            }
-            else -> {
-
-            }
+    fun getAllTickets() = makeRequestAndSave(
+        databaseQuery = {
+            dao.getAllTickets()
+        },
+        networkCall = {
+            webClient.fetchTickets()
+        },
+        saveCallResult = {
+            dao.save(it)
         }
-    }
+    )
 
 }

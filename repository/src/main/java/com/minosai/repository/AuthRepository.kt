@@ -9,42 +9,14 @@ import com.minosai.remote.auth.AuthWebClient
 import kotlinx.coroutines.Dispatchers
 
 class AuthRepository (private val webClient: AuthWebClient,
-                      private val prefs: SharedPreferences) {
+                      private val prefs: SharedPreferences) : BaseRepo() {
 
-    fun login(creds: String) = liveData(Dispatchers.IO) {
-        emit(Result.loading())
-
-        val response = webClient.login(creds)
-
-        when (response.status) {
-            Result.Status.SUCCESS -> {
-                Result.success("Login successful")
-            }
-            Result.Status.ERROR -> {
-                emit(Result.error<String>(response.message!!))
-            }
-            else -> {
-
-            }
-        }
+    fun login(creds: String) = makeRequest {
+        webClient.login(creds)
     }
 
-    fun signup(creds: String) = liveData(Dispatchers.IO) {
-        emit(Result.loading())
-
-        val response = webClient.signup(creds)
-
-        when (response.status) {
-            Result.Status.SUCCESS -> {
-                Result.success("Login successful")
-            }
-            Result.Status.ERROR -> {
-                emit(Result.error<String>(response.message!!))
-            }
-            else -> {
-
-            }
-        }
+    fun signup(creds: String) = makeRequest {
+        webClient.signup(creds)
     }
 
     fun setProfileType(profileType: Int) {
