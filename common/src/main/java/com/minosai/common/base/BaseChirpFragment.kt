@@ -4,7 +4,6 @@ import android.util.Log
 import com.minosai.common.Constants
 import com.minosai.common.toast
 import io.chirp.connect.ChirpConnect
-import java.lang.Exception
 
 abstract class BaseChirpFragment : BaseFragment() {
 
@@ -54,15 +53,15 @@ abstract class BaseChirpFragment : BaseFragment() {
     }
 
     private fun stopSdk() {
-//        val sendStopError = chirpSend.stop()
-//        val recStopError = chirpReceive.stop()
-//        Log.d("CHIRP_SEND_STOP_ERROR", sendStopError.toString())
-//        Log.d("CHIRP_REC_STOP_ERROR", recStopError.toString())
+        val sendStopError = chirpSend.stop()
+        val recStopError = chirpReceive.stop()
+        Log.d("CHIRP_SEND_STOP_ERROR", sendStopError.toString())
+        Log.d("CHIRP_REC_STOP_ERROR", recStopError.toString())
     }
 
     private fun closeSdk() {
-//        Log.d("CHIRP_CLOSING_SDK", "Closing send and receive")
-//        chirpSend.close()
-//        chirpReceive.close()
+        Log.d("CHIRP_CLOSING_SDK", "Closing send and receive")
+        chirpSend.close()
+        chirpReceive.close()
     }
 }
