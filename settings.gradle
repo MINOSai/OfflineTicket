@@ -1,2 +1,2 @@
-include ':app', ':model', ':local', ':remote', ':repository', ':common', ':navigation', ':feature-auth', ':feature-passenger', ':feature-conductor'
+include ':app', ':model', ':local', ':remote', ':repository', ':common', ':navigation', ':feature-auth', ':feature-passenger', ':feature-conductor', ':feature-things'
 rootProject.name='Offline Ticket'

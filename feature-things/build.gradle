@@ -1,0 +1,33 @@
+apply plugin: 'com.android.application'
+apply from: '../android_commons.gradle'
+apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
+android {
+    defaultConfig {
+        applicationId "com.minosai.feature_things"
+    }
+}
+
+dependencies {
+    //noinspection GradleDynamicVersion
+    compileOnly 'com.google.android.things:androidthings:+'
+
+    implementation project(Modules.common)
+    implementation project(Modules.repository)
+    api project(Modules.remote)
+    api project(Modules.local)
+    implementation project(Modules.featureConductor)
+
+    implementation Libs.koinAndroid
+    implementation Libs.koinViewModel
+    implementation Libs.constraintLayout
+    implementation Libs.lifecycleExtensions
+    implementation Libs.lifecycleViewModel
+    implementation Libs.navigation
+    implementation Libs.navigationFrag
+
+    implementation Libs.constraintLayout
+    implementation Libs.chirpSdk
+    implementation Libs.gson
+}
