@@ -6,23 +6,48 @@
     android:layout_height="match_parent"
     tools:context=".details.SendDetailsFragment">
 
+    <com.skyfishjy.library.RippleBackground
+        android:id="@+id/send_details_ripple"
+        android:layout_width="0dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rb_color="@color/colorAccent"
+        app:rb_duration="5000"
+        app:rb_radius="32dp"
+        app:rb_rippleAmount="3"
+        app:rb_scale="6">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_volume_up_black_24dp"
+            android:tint="@color/colorPrimary" />
+    </com.skyfishjy.library.RippleBackground>
+
     <TextView
         android:id="@+id/send_details_text_placeholder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:text="sending details..."
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/send_details_button_receive_ticket"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/send_details_button_resend"
+        style="@style/ButtonSecondary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="resend details"
-        android:visibility="gone"
+        android:text="Resend details"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/send_details_button_receive_ticket"
@@ -31,11 +56,12 @@
 
     <Button
         android:id="@+id/send_details_button_receive_ticket"
+        style="@style/ButtonBase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="receive ticket"
-        android:visibility="gone"
+        android:text="Receive ticket"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

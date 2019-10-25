@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FBFBFB">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button"
+            style="@style/ButtonBase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="8dp"
+            android:fontFamily="@font/sf_rounded_regular"
+            android:text="Button"
+            app:cornerRadius="@dimen/theme_corner_radius" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/ButtonSecondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="8dp"
+            android:text="Secondary Button" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/ButtonNegative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingHorizontal="64dp"
+            android:text="Logout" />
+
+        <TextView
+            style="@style/TextMedium18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Text medium 18" />
+
+        <TextView
+            style="@style/TextMedium14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Text medium 14" />
+
+        <TextView
+            style="@style/TextLight12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Text light 12" />
+
+        <TextView
+            style="@style/TextLight14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Text light 14" />
+
+        <TextView
+            style="@style/TextRegular18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Text regular 18" />
+
+        <TextView
+            style="@style/TextBold36"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Text bold 36" />
+
+        <TextView
+            style="@style/TextBold12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Text bold 12" />
+
+        <TextView
+            style="@style/TextMedium18.Blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Text medium 18" />
+
+        <TextView
+            style="@style/TextMedium14.Blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Text medium 14" />
+
+        <TextView
+            style="@style/TextLight12.Blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Text light 12" />
+
+        <TextView
+            style="@style/TextLight14.Blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Text light 14" />
+
+        <TextView
+            style="@style/TextRegular18.Blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Text regular 18" />
+
+        <TextView
+            style="@style/TextBold36.Blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Text bold 36" />
+
+        <TextView
+            style="@style/TextBold12.Blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Text bold 12" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
+
+

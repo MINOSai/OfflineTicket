@@ -1,14 +1,13 @@
 package com.minosai.feature_passenger.balance
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.minosai.common.base.BaseFragment
 import com.minosai.common.base.BaseViewModel
+import com.minosai.common.extensions.getInput
 
 import com.minosai.feature_passenger.R
 import kotlinx.android.synthetic.main.balance_fragment.view.*
@@ -34,8 +33,8 @@ class BalanceFragment : BaseFragment() {
         view.balance_text_current.text = "Current Balance: $balance"
 
         view.balance_button_pay.setOnClickListener {
-            val balance = view.balance_input_amount.text.toString().toInt()
-            viewModel.setBalance(balance)
+            val newBalance = view.balance_input_amount.getInput().toInt()
+            viewModel.addBalance(newBalance)
             findNavController().popBackStack()
         }
     }

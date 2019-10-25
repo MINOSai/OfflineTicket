@@ -42,6 +42,7 @@ dependencies {
     api Libs.navigation
     api Libs.navigationFrag
     implementation Libs.chirpSdk
+    implementation Libs.materialComponents
 }
 
 repositories {

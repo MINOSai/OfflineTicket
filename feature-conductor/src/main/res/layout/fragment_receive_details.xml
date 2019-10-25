@@ -6,23 +6,48 @@
     android:layout_height="match_parent"
     tools:context=".ticket.fragments.ReceiveDetailsFragment">
 
+    <com.skyfishjy.library.RippleBackground
+        android:id="@+id/receive_details_ripple"
+        android:layout_width="0dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rb_color="@color/colorAccent"
+        app:rb_duration="5000"
+        app:rb_radius="32dp"
+        app:rb_rippleAmount="3"
+        app:rb_scale="6">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_mic_black_24dp"
+            android:tint="@color/colorPrimary" />
+    </com.skyfishjy.library.RippleBackground>
+
     <TextView
         android:id="@+id/rec_details_text_placeholder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:text="Receiving details..."
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/rec_details_button_proceed"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/rec_details_button_proceed"
+        style="@style/ButtonBase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="proceed"
-        android:visibility="gone"
+        android:text="Proceed"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -30,11 +55,12 @@
 
     <Button
         android:id="@+id/rec_details_button_retry"
+        style="@style/ButtonSecondary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="retry"
-        android:visibility="gone"
+        android:text="Retry"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/rec_details_button_proceed"
         app:layout_constraintHorizontal_bias="0.5"

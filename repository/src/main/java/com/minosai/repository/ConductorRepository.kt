@@ -1,11 +1,13 @@
 package com.minosai.repository
 
 import androidx.lifecycle.liveData
-import androidx.lifecycle.map
 import com.minosai.local.conductor.ConductorDao
 import com.minosai.model.Result
+import com.minosai.model.Ticket
 import com.minosai.remote.conductor.ConductorWebClient
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class ConductorRepository (private val webClient: ConductorWebClient,
                            private val dao: ConductorDao) : BaseRepo() {
@@ -41,5 +43,9 @@ class ConductorRepository (private val webClient: ConductorWebClient,
             dao.save(it)
         }
     )
+
+    fun addTicket(ticket: Ticket) = GlobalScope.launch(Dispatchers.IO) {
+        dao.save(ticket)
+    }
 
 }

@@ -20,12 +20,6 @@ data class Ticket(
     @SerializedName("amount")
     val amount: String,
 
-    @SerializedName("date")
-    val date: String,
-
-    @SerializedName("time")
-    val time: String,
-
-    @SerializedName("bus")
-    val bus: String
+    @SerializedName("timestamp")
+    val timestamp: String?
 )

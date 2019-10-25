@@ -15,4 +15,5 @@ dependencies {
     implementation Libs.lifecycleViewModel
     implementation Libs.navigation
     implementation Libs.navigationFrag
+    implementation Libs.materialComponents
 }

@@ -44,8 +44,9 @@ object Versions {
     //UI
     const val constraintLayout = "2.0.0-beta2"
     const val fragment = "1.2.0-alpha03"
-    const val material = "1.0.0"
+    const val material = "1.2.0-alpha01"
     const val recyclerView = "1.1.0-beta04"
+    const val rippleAnim = "1.0.1"
 
     const val chirp = "3.8.+"
 
@@ -90,6 +91,7 @@ object Libs {
     const val fragment = "androidx.fragment:fragment-ktx:" + Versions.fragment
     const val recyclerView = "androidx.recyclerview:recyclerview:" + Versions.recyclerView
     const val materialComponents = "com.google.android.material:material:" + Versions.material
+    const val rippleAnim = "com.skyfishjy.ripplebackground:library:" + Versions.rippleAnim
 
     const val chirpSdk = "io.chirp:chirpsdk:" + Versions.chirp
 

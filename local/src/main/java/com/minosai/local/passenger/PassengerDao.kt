@@ -15,4 +15,8 @@ abstract class PassengerDao : BaseDao<Ticket>() {
     suspend fun save(tickets: List<Ticket>) {
         insert(tickets)
     }
+
+    suspend fun save(ticket: Ticket) {
+        insert(ticket)
+    }
 }
