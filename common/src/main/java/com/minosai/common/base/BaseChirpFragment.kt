@@ -2,7 +2,7 @@ package com.minosai.common.base
 
 import android.util.Log
 import com.minosai.common.Constants
-import com.minosai.common.toast
+import com.minosai.common.extensions.toast
 import io.chirp.connect.ChirpConnect
 
 abstract class BaseChirpFragment : BaseFragment() {
@@ -47,7 +47,7 @@ abstract class BaseChirpFragment : BaseFragment() {
         try {
             closeSdk()
         } catch (e: Exception) {
-            context?.toast("Error while closing chirp")
+            toast("Error while closing chirp")
             e.printStackTrace()
         }
     }

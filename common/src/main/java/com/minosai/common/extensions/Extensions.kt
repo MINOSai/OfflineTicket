@@ -1,36 +1,18 @@
-package com.minosai.common
+package com.minosai.common.extensions
 
 import android.app.Activity
 import android.content.Context
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 
-fun Context.toast(message: String) {
+fun Context.longToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 }
 
-fun ViewGroup.inflate(layoutRes: Int): View {
-    return LayoutInflater.from(context).inflate(layoutRes, this, false)
-}
-
-fun View.hide() {
-    visibility = View.GONE
-}
-
-fun View.show() {
-    visibility = View.VISIBLE
-}
-
-fun View.toggleVisibility() {
-    visibility = if (visibility == View.VISIBLE) {
-        View.GONE
-    } else {
-        View.VISIBLE
-    }
+fun Context.toast(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
 
 fun Fragment.hideKeyboard() {
@@ -44,4 +26,12 @@ fun Activity.hideKeyboard() {
 fun Context.hideKeyboard(view: View) {
     val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
     inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+}
+
+fun Fragment.toast(message: String) {
+    requireContext().toast(message)
+}
+
+fun Fragment.longToast(message: String) {
+    requireContext().longToast(message)
 }

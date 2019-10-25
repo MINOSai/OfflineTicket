@@ -6,14 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".home.ConductorHomeFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Conductor Home Screen"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextMedium18.Blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Welcome Conductor"
+                android:textSize="26sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_conductor_home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:itemCount="5"
+                tools:listitem="@layout/item_ticket" />
+
+        </LinearLayout>
+    </ScrollView>
+
 
     <Button
         android:id="@+id/home_button_new_ticket"
@@ -21,6 +42,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:text="new ticket"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        app:iconTint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

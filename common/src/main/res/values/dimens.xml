@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="font_size_18">18sp</dimen>
+    <dimen name="font_size_14">14sp</dimen>
+    <dimen name="font_size_12">12sp</dimen>
+    <dimen name="font_size_36">36sp</dimen>
+    <dimen name="theme_corner_radius">6dp</dimen>
+</resources>

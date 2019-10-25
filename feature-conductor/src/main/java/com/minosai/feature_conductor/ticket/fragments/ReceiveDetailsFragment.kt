@@ -5,18 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.minosai.common.Constants
 import com.minosai.common.base.BaseChirpFragment
-import com.minosai.common.base.BaseFragment
 import com.minosai.common.base.BaseViewModel
-import com.minosai.common.hide
-import com.minosai.common.show
+import com.minosai.common.extensions.hide
+import com.minosai.common.extensions.show
 import com.minosai.feature_conductor.R
 import com.minosai.feature_conductor.ticket.ConductorTicketViewModel
-import io.chirp.connect.ChirpConnect
 import kotlinx.android.synthetic.main.fragment_receive_details.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
-import java.lang.Exception
 
 class ReceiveDetailsFragment : BaseChirpFragment() {
 
@@ -35,6 +31,8 @@ class ReceiveDetailsFragment : BaseChirpFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         receiveDetails()
+
+        receive_details_ripple.startRippleAnimation()
 
         rec_details_button_retry.setOnClickListener {
             receiveDetails()

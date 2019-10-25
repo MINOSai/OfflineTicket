@@ -6,16 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
-import com.minosai.common.Constants.CHIRP_APP_CONFIG
-import com.minosai.common.Constants.CHIRP_APP_KEY
-import com.minosai.common.Constants.CHIRP_APP_SECRET
 import com.minosai.common.base.BaseChirpFragment
-import com.minosai.common.base.BaseFragment
 import com.minosai.common.base.BaseViewModel
-import com.minosai.common.show
-import com.minosai.common.toast
+import com.minosai.common.extensions.show
 import com.minosai.feature_passenger.R
-import io.chirp.connect.ChirpConnect
 import kotlinx.android.synthetic.main.send_details_fragment.*
 import kotlinx.android.synthetic.main.send_details_fragment.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -35,6 +29,8 @@ class SendDetailsFragment : BaseChirpFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        send_details_ripple.startRippleAnimation()
 
         sendDetails()
 
@@ -60,7 +56,6 @@ class SendDetailsFragment : BaseChirpFragment() {
         if (error.code > 0) {
             showErrorMessage()
         } else {
-            requireContext().toast("Details sent!")
             send_details_text_placeholder.text = "Details sent successfully!"
             send_details_button_resend.show()
             send_details_button_receive_ticket.show()

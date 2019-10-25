@@ -6,22 +6,47 @@
     android:layout_height="match_parent"
     tools:context=".ticket.ReceiveTicketFragment">
 
+    <com.skyfishjy.library.RippleBackground
+        android:id="@+id/receive_ticket_ripple"
+        android:layout_width="0dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rb_color="@color/colorAccent"
+        app:rb_duration="5000"
+        app:rb_radius="32dp"
+        app:rb_rippleAmount="3"
+        app:rb_scale="6">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_mic_black_24dp"
+            android:tint="@color/colorPrimary" />
+    </com.skyfishjy.library.RippleBackground>
+
     <TextView
         android:id="@+id/rec_ticket_text_placeholder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:text="Receiving ticket..."
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/rec_ticket_button_retry"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/rec_ticket_button_retry"
+        style="@style/ButtonBase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="retry"
+        android:text="Retry"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

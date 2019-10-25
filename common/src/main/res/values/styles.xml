@@ -1,0 +1,99 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="ButtonBase" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="cornerRadius">@dimen/theme_corner_radius</item>
+        <item name="android:fontFamily">@font/sf_rounded_regular</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="backgroundTint">@color/colorPrimary</item>
+    </style>
+
+    <style name="ButtonSecondary" parent="ButtonBase">
+        <item name="backgroundTint">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="ButtonNegative" parent="ButtonBase">
+        <item name="backgroundTint">@color/colorNegative</item>
+        <item name="android:fontFamily">@font/sf_rounded_medium</item>
+    </style>
+
+    <style name="BaseText"></style>
+
+    <style name="TextMedium18">
+        <item name="android:fontFamily">@font/sf_rounded_medium</item>
+        <item name="android:textSize">@dimen/font_size_18</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="TextMedium18.Blue">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="TextMedium14">
+        <item name="android:fontFamily">@font/sf_rounded_medium</item>
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="TextMedium14.Blue">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="TextLight14">
+        <item name="android:fontFamily">@font/sf_rounded_light</item>
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="TextLight14.Blue">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="TextLight12">
+        <item name="android:fontFamily">@font/sf_rounded_light</item>
+        <item name="android:textSize">@dimen/font_size_12</item>
+    </style>
+
+    <style name="TextLight12.Blue">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="TextBold36">
+        <item name="android:fontFamily">@font/sf_rounded_bold</item>
+        <item name="android:textSize">@dimen/font_size_36</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="TextBold36.Blue">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="TextBold12">
+        <item name="android:fontFamily">@font/sf_rounded_bold</item>
+        <item name="android:textSize">@dimen/font_size_12</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="TextBold12.Blue">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="TextRegular18">
+        <item name="android:fontFamily">@font/sf_rounded_regular</item>
+        <item name="android:textSize">@dimen/font_size_18</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="TextRegular18.Blue">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+</resources>

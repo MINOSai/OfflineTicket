@@ -9,7 +9,7 @@ import com.minosai.model.Ticket
 @Dao
 abstract class ConductorDao : BaseDao<Ticket>() {
 
-    @Query("SELECT * FROM ticket WHERE date LIKE 1234")
+    @Query("SELECT * FROM ticket")
     abstract fun getTicketsToUpload() : List<Ticket>
 
     @Query("SELECT * FROM ticket")
@@ -17,5 +17,9 @@ abstract class ConductorDao : BaseDao<Ticket>() {
 
     suspend fun save(tickets: List<Ticket>) {
         insert(tickets)
+    }
+
+    suspend fun save(ticket: Ticket) {
+        insert(ticket)
     }
 }

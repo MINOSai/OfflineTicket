@@ -1,23 +1,18 @@
 package com.minosai.feature_passenger.ticket
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.minosai.common.Constants
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.minosai.common.base.BaseChirpFragment
-import com.minosai.common.base.BaseFragment
 import com.minosai.common.base.BaseViewModel
-import com.minosai.common.show
-import com.minosai.common.toast
-
+import com.minosai.common.extensions.show
 import com.minosai.feature_passenger.R
-import io.chirp.connect.ChirpConnect
+import com.minosai.model.Ticket
 import kotlinx.android.synthetic.main.receive_ticket_fragment.*
-import kotlinx.android.synthetic.main.send_details_fragment.*
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.lang.Exception
 
 class ReceiveTicketFragment : BaseChirpFragment() {
 
@@ -37,6 +32,8 @@ class ReceiveTicketFragment : BaseChirpFragment() {
 
         receiveTicket()
 
+        receive_ticket_ripple.startRippleAnimation()
+
         rec_ticket_button_retry.setOnClickListener {
             receiveTicket()
         }
@@ -50,6 +47,21 @@ class ReceiveTicketFragment : BaseChirpFragment() {
                     val identifier = String(it)
                     rec_ticket_text_placeholder.text = identifier
                     rec_ticket_button_retry.show()
+
+                    val collectionType = object : TypeToken<List<String>>() {}.type
+                    val ticketList = Gson().fromJson<List<String>>(identifier, collectionType)
+
+                    viewModel.addTicket(
+                        Ticket(
+                            ticketList[0],
+                            ticketList[1],
+                            ticketList[2],
+                            ticketList[3],
+                            null
+                        )
+                    )
+
+                    viewModel.reduceBalance(ticketList[3].toInt())
                 }
             }
         }

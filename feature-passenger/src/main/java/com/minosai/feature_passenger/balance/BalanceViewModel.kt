@@ -1,6 +1,5 @@
 package com.minosai.feature_passenger.balance
 
-import androidx.lifecycle.ViewModel
 import com.minosai.common.base.BaseViewModel
 import com.minosai.repository.PassengerRepository
 
@@ -10,4 +9,6 @@ class BalanceViewModel (private val repo: PassengerRepository) : BaseViewModel()
 
     fun setBalance(balance: Int) =
         repo.setBalance(balance)
+
+    fun addBalance(amount: Int) = repo.addBalance(amount)
 }

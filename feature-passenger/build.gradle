@@ -8,4 +8,5 @@ dependencies {
 
     implementation Libs.chirpSdk
     implementation Libs.gson
+    implementation Libs.rippleAnim
 }

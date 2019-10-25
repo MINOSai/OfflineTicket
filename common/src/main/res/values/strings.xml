@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">common</string>
+    <string name="text_placeholder">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</string>
+    <string name="input_error_blank">Input cannot be blank</string>
+    <string name="input_error_phone">Invalid phone number</string>
+    <string name="input_error_email">Invalid email id</string>
+    <string name="input_error_invalid">Invalid input</string>
 </resources>
