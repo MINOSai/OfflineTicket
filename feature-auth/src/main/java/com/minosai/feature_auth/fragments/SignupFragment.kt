@@ -1,5 +1,6 @@
 package com.minosai.feature_auth.fragments
 
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,10 +17,10 @@ import com.minosai.feature_auth.AuthActivity
 import com.minosai.feature_auth.AuthViewModel
 import com.minosai.feature_auth.R
 import com.minosai.model.Result
-import kotlinx.android.synthetic.main.login_fragment.*
+import kotlinx.android.synthetic.main.fragment_signup.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
-class LoginFragment : BaseFragment() {
+class SignupFragment : BaseFragment() {
 
     private val viewModel by sharedViewModel<AuthViewModel>()
 
@@ -29,32 +30,43 @@ class LoginFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.login_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_signup, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        auth_button_continue.setOnClickListener {
-            if (login_input_username.isValidPhone() && login_input_password.isValidInput()) {
-                val userName = login_input_username.getInput()
-                val password = login_input_password.getInput()
+        button_signup.setOnClickListener {
+            if (signup_input_username.isValidPhone() && signup_input_password.isValidInput()) {
+                val userName = signup_input_username.getInput()
+                val password = signup_input_password.getInput()
 
-                viewModel.login(userName, password).observe(viewLifecycleOwner, Observer { result ->
+                viewModel.signup(userName, password).observe(this, Observer { result ->
                     when (result.status) {
-                        Result.Status.LOADING -> toast("Logging in...")
-                        Result.Status.SUCCESS -> {
-                            toast("User logged in successfully")
-                            (requireActivity() as AuthActivity).moveToMainActivity()
-                        }
+                        Result.Status.LOADING -> toast("Signing up...")
+                        Result.Status.SUCCESS -> login(userName, password)
                         Result.Status.ERROR -> toast(result.message!!)
                     }
                 })
             }
         }
 
-        login_button_signup.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment2_to_signupFragment)
+        signup_button_login.setOnClickListener {
+            findNavController().popBackStack()
         }
+    }
+
+    private fun login(userName: String, password: String) {
+        viewModel.login(userName, password).observe(this, Observer { result ->
+            when (result.status) {
+                Result.Status.LOADING -> {
+                }
+                Result.Status.SUCCESS -> {
+                    toast("User created successfully")
+                    (requireActivity() as AuthActivity).moveToMainActivity()
+                }
+                Result.Status.ERROR -> toast(result.message!!)
+            }
+        })
     }
 }

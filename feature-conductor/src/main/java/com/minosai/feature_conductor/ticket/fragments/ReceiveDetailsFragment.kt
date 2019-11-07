@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.minosai.common.Constants
 import com.minosai.common.base.BaseChirpFragment
 import com.minosai.common.base.BaseViewModel
 import com.minosai.common.extensions.hide
 import com.minosai.common.extensions.show
 import com.minosai.feature_conductor.R
 import com.minosai.feature_conductor.ticket.ConductorTicketViewModel
+import io.chirp.chirpsdk.ChirpSDK
 import kotlinx.android.synthetic.main.fragment_receive_details.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
@@ -39,21 +41,33 @@ class ReceiveDetailsFragment : BaseChirpFragment() {
         }
 
         rec_details_button_proceed.setOnClickListener {
+            viewModel.generateId()
             findNavController()
                 .navigate(R.id.action_receiveDetailsFragment_to_sendTicketFragment)
         }
     }
 
     private fun receiveDetails() {
-        chirpReceive.onReceived { payload, _ ->
+        chirp?.onReceived { payload, _ ->
             activity?.runOnUiThread {
                 payload?.let {
                     val identifier = String(it)
                     rec_details_text_placeholder.text = identifier
                     rec_details_button_proceed.show()
                     rec_details_button_retry.hide()
+                    viewModel.setPassengerIdFromIdentifier(identifier)
                 }
             }
         }
+    }
+
+    override fun getFragmentName() = "conductor receive details"
+
+    override fun initializeChirp() {
+        chirp = ChirpSDK(
+            requireContext(),
+            Constants.CHIRP_APP_KEY,
+            Constants.CHIRP_APP_SECRET
+        ).apply { setConfig(Constants.CHIRP_APP_CONFIG) }
     }
 }

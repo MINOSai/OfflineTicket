@@ -2,6 +2,7 @@ package com.minosai.local.util
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 
 object PreferenceHelper {
 
@@ -15,6 +16,7 @@ object PreferenceHelper {
     }
 
     operator fun SharedPreferences.set(key: String, value: Any?) {
+        Log.d("SHARED_PREFERENCE", "Key: $key | Value: ${value.toString()}")
         when (value) {
             is String? -> edit { it.putString(key, value) }
             is Int -> edit { it.putInt(key, value) }

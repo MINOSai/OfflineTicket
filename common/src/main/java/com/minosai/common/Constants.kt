@@ -7,6 +7,9 @@ object Constants {
     const val PREF = "$PACKAGE_NAME.prefs"
 
     const val IS_FIRST_TIME = "$PREF.isfirsttime"
+    const val PREF_ACCESS_TOKEN = "$PREF.accesstoken"
+    const val PREF_REFRESH_TOKEN = "$PREF.refreshtoken"
+    const val PREF_USER_ID = "$PREF.userid"
     const val PREF_PROFILE_TYPE = "$PREF.profile"
     const val PREF_PHONE_NUMBER = "$PREF.phonenumber"
     const val PREF_PASSENGER_BALANCE = "$PREF.passengerbalance"

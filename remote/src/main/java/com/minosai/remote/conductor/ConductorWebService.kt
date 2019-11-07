@@ -8,9 +8,12 @@ import retrofit2.http.POST
 
 interface ConductorWebService {
 
-    @POST("tickets")
-    suspend fun uploadTickets(@Body tickets: List<Ticket>) : Response<String>
+    @POST("ticket/bulk/")
+    suspend fun uploadTickets(@Body tickets: List<Ticket>): Response<List<Ticket>>
 
-    @GET("tickets")
+    @POST("ticket/")
+    suspend fun uploadTicket(@Body ticket: Ticket): Response<String>
+
+    @GET("ticket/")
     suspend fun fetchTickets() : Response<List<Ticket>>
 }

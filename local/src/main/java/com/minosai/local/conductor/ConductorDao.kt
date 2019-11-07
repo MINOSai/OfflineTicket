@@ -15,6 +15,9 @@ abstract class ConductorDao : BaseDao<Ticket>() {
     @Query("SELECT * FROM ticket")
     abstract fun getAllTickets() : LiveData<List<Ticket>>
 
+    @Query("DELETE FROM ticket")
+    abstract fun deleteTicketsToUpload()
+
     suspend fun save(tickets: List<Ticket>) {
         insert(tickets)
     }

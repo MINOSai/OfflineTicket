@@ -1,13 +1,12 @@
 package com.minosai.feature_auth
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import com.minosai.repository.AuthRepository
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class AuthActivity : AppCompatActivity() {
@@ -31,5 +30,19 @@ class AuthActivity : AppCompatActivity() {
         navController = findNavController(R.id.auth_nav_host_fragment)
 //        appBarConfiguration = AppBarConfiguration(navController.graph)
 //        setupActionBarWithNavController(navController, appBarConfiguration)
+    }
+
+    fun moveToMainActivity() {
+        try {
+            startActivity(
+                Intent(
+                    this,
+                    Class.forName("com.minosai.offlineticket.MainActivity")
+                )
+            )
+            finish()
+        } catch (e: ClassNotFoundException) {
+            e.printStackTrace()
+        }
     }
 }

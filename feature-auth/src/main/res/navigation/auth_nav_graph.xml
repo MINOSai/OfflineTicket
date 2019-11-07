@@ -17,9 +17,20 @@
         <action
             android:id="@+id/action_loginFragment2_to_otpFragment"
             app:destination="@id/otpFragment" />
+        <action
+            android:id="@+id/action_loginFragment2_to_signupFragment"
+            app:destination="@id/signupFragment" />
     </fragment>
     <fragment
         android:id="@+id/otpFragment"
         android:name="com.minosai.feature_auth.fragments.OtpFragment"
         android:label="Verify OTP" />
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.minosai.feature_auth.fragments.SignupFragment"
+        android:label="SignupFragment">
+        <action
+            android:id="@+id/action_signupFragment_to_otpFragment"
+            app:destination="@id/otpFragment" />
+    </fragment>
 </navigation>

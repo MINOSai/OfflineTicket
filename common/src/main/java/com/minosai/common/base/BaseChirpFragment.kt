@@ -1,33 +1,28 @@
 package com.minosai.common.base
 
-import android.util.Log
-import com.minosai.common.Constants
-import com.minosai.common.extensions.toast
-import io.chirp.connect.ChirpConnect
+import android.os.Bundle
+import io.chirp.chirpsdk.ChirpSDK
+import io.chirp.chirpsdk.models.ChirpSDKState
 
 abstract class BaseChirpFragment : BaseFragment() {
 
-    protected val chirpSend by lazy {
-        getChirpInit().apply {
-            val error = start(send = true, receive = false)
-            Log.d("CHIRP_SEND_START_ERROR", error.toString())
-        }
+    protected var chirp: ChirpSDK? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+//        chirp = ChirpSDK(
+//            requireContext(),
+//            Constants.CHIRP_APP_KEY,
+//            Constants.CHIRP_APP_SECRET
+//        ).apply { setConfig(Constants.CHIRP_APP_CONFIG) }
+
+        initializeChirp()
     }
 
-    protected val chirpReceive by lazy {
-        getChirpInit().apply {
-            val error = start(send = false, receive = true)
-            Log.d("CHIRP_REC_START_ERROR", error.toString())
-        }
-    }
-
-    private fun getChirpInit() = ChirpConnect(
-        requireContext(),
-        Constants.CHIRP_APP_KEY,
-        Constants.CHIRP_APP_SECRET
-    ).apply {
-        val error = setConfig(Constants.CHIRP_APP_CONFIG)
-        Log.d("CHIRP_CONFIG_ERROR", error.toString())
+    override fun onStart() {
+        super.onStart()
+        startSdk()
     }
 
     override fun onStop() {
@@ -37,31 +32,81 @@ abstract class BaseChirpFragment : BaseFragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        stopSdk()
-        closeSdk()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        stopSdk()
-        try {
-            closeSdk()
-        } catch (e: Exception) {
-            toast("Error while closing chirp")
-            e.printStackTrace()
+        chirp?.let {
+            try {
+                it.stop()
+                it.close()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 
     private fun stopSdk() {
-        val sendStopError = chirpSend.stop()
-        val recStopError = chirpReceive.stop()
-        Log.d("CHIRP_SEND_STOP_ERROR", sendStopError.toString())
-        Log.d("CHIRP_REC_STOP_ERROR", recStopError.toString())
+        chirp?.let {
+            if (it.getState() > ChirpSDKState.CHIRP_SDK_STATE_STOPPED) {
+                it.stop()
+            }
+        }
     }
 
-    private fun closeSdk() {
-        Log.d("CHIRP_CLOSING_SDK", "Closing send and receive")
-        chirpSend.close()
-        chirpReceive.close()
+    private fun startSdk() {
+        chirp?.let {
+            if (it.getState() == ChirpSDKState.CHIRP_SDK_STATE_STOPPED) {
+                it.start()
+            }
+        }
     }
+
+
+//    private var chirp: ChirpSDK? = null
+//
+//    protected val chirpSend by lazy {
+//        getChirpInit().apply {
+//            val error = start(send = true, receive = false)
+//            Log.d("CHIRP_SEND_START_ERROR", error.toString() + " in ${getFragmentName()}")
+//        }
+//    }
+//
+//    protected val chirpReceive by lazy {
+//        getChirpInit().apply {
+//            val error = start(send = false, receive = true)
+//            Log.d("CHIRP_REC_START_ERROR", error.toString() + " in ${getFragmentName()}")
+//        }
+//    }
+//
+//    private fun getChirpInit(): ChirpSDK {
+//        if (chirp == null) {
+//            chirp = ChirpSDK(
+//                requireContext(),
+//                Constants.CHIRP_APP_KEY,
+//                Constants.CHIRP_APP_SECRET
+//            ).apply {
+//                val error = setConfig(Constants.CHIRP_APP_CONFIG)
+//                Log.d("CHIRP_CONFIG_ERROR", error.toString() + " in ${getFragmentName()}")
+//            }
+//        }
+//        return chirp!!
+//    }
+//
+//    fun stopSdk() {
+//        Log.d("CHIRP", "Stopping send and receive in ${getFragmentName()}")
+////        chirpSend.stop()
+////        chirpReceive.stop()
+//    }
+//    fun startSdk() {
+//        Log.d("CHIRP", "Starting send and receive in ${getFragmentName()}")
+////        chirpSend.start(send = true, receive = false)
+////        chirpReceive.start(send = false, receive = true)
+//    }
+//
+//    private fun closeSdk() {
+//        Log.d("CHIRP", "Closing send and receive")
+//        chirpSend.close()
+//        chirpReceive.close()
+//    }
+
+    abstract fun getFragmentName(): String
+
+    abstract fun initializeChirp()
 }

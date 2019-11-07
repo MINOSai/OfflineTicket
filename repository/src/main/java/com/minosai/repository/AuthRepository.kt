@@ -1,30 +1,52 @@
 package com.minosai.repository
 
 import android.content.SharedPreferences
-import androidx.lifecycle.liveData
 import com.minosai.common.Constants
 import com.minosai.local.util.PreferenceHelper.set
-import com.minosai.model.Result
+import com.minosai.model.auth.AuthRequest
 import com.minosai.remote.auth.AuthWebClient
-import kotlinx.coroutines.Dispatchers
+import com.minosai.repository.util.BaseRepo
 
-class AuthRepository (private val webClient: AuthWebClient,
-                      private val prefs: SharedPreferences) : BaseRepo() {
+class AuthRepository(
+    private val webClient: AuthWebClient,
+    private val prefs: SharedPreferences
+) : BaseRepo() {
 
-    fun login(creds: String) = makeRequest {
-        webClient.login(creds)
+    fun login(userName: String, password: String, profileType: Int) = makeRequest(
+        request = {
+            webClient.login(AuthRequest(userName, password, profileType))
+        },
+        onSuccess = { response ->
+            response?.let {
+                storeAccessToken(it.access)
+                storeRefreshToken(it.refresh)
+                storeProfileType(profileType)
+                storeUserId(it.id)
+            }
+        }
+    )
+
+    fun signup(userName: String, password: String, profileType: Int) = makeRequest {
+        webClient.signup(AuthRequest(userName, password, profileType))
     }
 
-    fun signup(creds: String) = makeRequest {
-        webClient.signup(creds)
+    private fun storeRefreshToken(refresh: String) {
+        prefs[Constants.PREF_REFRESH_TOKEN] = refresh
     }
 
-    fun setProfileType(profileType: Int) {
+    private fun storeAccessToken(access: String) {
+        prefs[Constants.PREF_ACCESS_TOKEN] = access
+    }
+
+    private fun storeUserId(id: Int) {
+        prefs[Constants.PREF_USER_ID] = id
+    }
+
+    private fun storeProfileType(profileType: Int) {
         prefs[Constants.PREF_PROFILE_TYPE] = profileType
     }
 
     fun storePhNo(phoneNumber: String) {
         prefs[Constants.PREF_PHONE_NUMBER] = phoneNumber
     }
-
 }

@@ -7,6 +7,8 @@ class PassengerHomeViewModel (private val repo: PassengerRepository) : BaseViewM
 
     fun fetchAllTickets() = repo.getAllTickets()
 
+    fun fetchBalance() = repo.fetchBalance()
+
     fun getBalance() = repo.getBalance()
 
 }

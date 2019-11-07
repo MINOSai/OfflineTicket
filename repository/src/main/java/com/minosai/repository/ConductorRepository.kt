@@ -1,36 +1,30 @@
 package com.minosai.repository
 
-import androidx.lifecycle.liveData
+import android.content.SharedPreferences
+import com.minosai.common.Constants
 import com.minosai.local.conductor.ConductorDao
-import com.minosai.model.Result
+import com.minosai.local.util.PreferenceHelper.get
 import com.minosai.model.Ticket
 import com.minosai.remote.conductor.ConductorWebClient
+import com.minosai.repository.util.BaseRepo
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class ConductorRepository (private val webClient: ConductorWebClient,
-                           private val dao: ConductorDao) : BaseRepo() {
+class ConductorRepository(
+    private val webClient: ConductorWebClient,
+    private val dao: ConductorDao,
+    private val prefs: SharedPreferences
+) : BaseRepo() {
 
-    fun uploadTickets() = liveData(Dispatchers.IO) {
-        emit(Result.loading())
-
-        val tickets = dao.getTicketsToUpload()
-
-        val response = webClient.uploadTickets(tickets)
-
-        when (response.status) {
-            Result.Status.SUCCESS -> {
-                emit(Result.success("Tickets uploaded successfully"))
-            }
-            Result.Status.ERROR -> {
-                emit(Result.error(response.message!!))
-            }
-            else -> {
-
-            }
+    fun uploadTickets() = makeRequest(
+        request = {
+            val tickets = dao.getTicketsToUpload()
+            webClient.uploadTickets(tickets)
+        },
+        onSuccess = {
+            dao.deleteTicketsToUpload()
         }
-    }
+    )
 
     fun getAllTickets() = makeRequestAndSave(
         databaseQuery = {
@@ -44,8 +38,13 @@ class ConductorRepository (private val webClient: ConductorWebClient,
         }
     )
 
-    fun addTicket(ticket: Ticket) = GlobalScope.launch(Dispatchers.IO) {
+    fun getTicketsFromDb() = dao.getAllTickets()
+
+    suspend fun addTicket(ticket: Ticket) = withContext(Dispatchers.IO) {
         dao.save(ticket)
     }
+
+    fun getUserId() =
+        prefs[Constants.PREF_USER_ID, 0] ?: 0
 
 }

@@ -5,11 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.google.gson.Gson
+import com.minosai.common.Constants
 import com.minosai.common.base.BaseChirpFragment
 import com.minosai.common.base.BaseViewModel
 import com.minosai.common.extensions.show
 import com.minosai.feature_passenger.R
+import io.chirp.chirpsdk.ChirpSDK
 import kotlinx.android.synthetic.main.send_details_fragment.*
 import kotlinx.android.synthetic.main.send_details_fragment.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -32,7 +33,7 @@ class SendDetailsFragment : BaseChirpFragment() {
 
         send_details_ripple.startRippleAnimation()
 
-        sendDetails()
+//        sendDetails()
 
         view.send_details_button_resend.setOnClickListener {
             sendDetails()
@@ -44,16 +45,8 @@ class SendDetailsFragment : BaseChirpFragment() {
     }
 
     private fun sendDetails() {
-        val detailsList = listOf(
-            viewModel.getPhoneNumber(),
-            viewModel.getBalance().toString()
-        )
-
-        val detailsJson = Gson().toJson(detailsList)
-        val payload = detailsJson.toByteArray()
-
-        val error = chirpSend.send(payload)
-        if (error.code > 0) {
+        val error = chirp?.send(viewModel.getPayload())
+        if (error?.code!! > 0) {
             showErrorMessage()
         } else {
             send_details_text_placeholder.text = "Details sent successfully!"
@@ -65,5 +58,15 @@ class SendDetailsFragment : BaseChirpFragment() {
     private fun showErrorMessage() {
         send_details_text_placeholder.text = "An error occurred. Please try again"
         send_details_button_resend.show()
+    }
+
+    override fun getFragmentName() = "passenger send details"
+
+    override fun initializeChirp() {
+        chirp = ChirpSDK(
+            requireContext(),
+            Constants.CHIRP_APP_KEY,
+            Constants.CHIRP_APP_SECRET
+        ).apply { setConfig(Constants.CHIRP_APP_CONFIG) }
     }
 }

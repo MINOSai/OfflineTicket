@@ -1,8 +1,8 @@
 package com.minosai.remote.util
 
 import com.minosai.model.Result
+import com.minosai.remote.BuildConfig
 import retrofit2.Response
-import java.lang.Exception
 
 open class BaseApiClient {
 
@@ -21,7 +21,11 @@ open class BaseApiClient {
             }
         } catch (e: Exception) {
             val errorMessage = e.message ?: e.toString()
-            return Result.error("Network request failed. Reason: $errorMessage")
+            return if (BuildConfig.DEBUG) {
+                Result.error("Network called failed with message: $errorMessage")
+            } else {
+                Result.error("Check your internet connection!")
+            }
         }
     }
 
