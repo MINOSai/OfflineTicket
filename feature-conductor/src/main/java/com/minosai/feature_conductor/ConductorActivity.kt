@@ -1,13 +1,13 @@
 package com.minosai.feature_conductor
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
+import com.minosai.common.base.BaseChirpActivity
 
-class ConductorActivity : AppCompatActivity() {
+class ConductorActivity : BaseChirpActivity() {
 
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -24,7 +24,5 @@ class ConductorActivity : AppCompatActivity() {
 
     private fun configureNavController() {
         navController = findNavController(R.id.conductor_nav_host_fragment)
-//        appBarConfiguration = AppBarConfiguration(navController.graph)
-//        setupActionBarWithNavController(navController, appBarConfiguration)
     }
 }

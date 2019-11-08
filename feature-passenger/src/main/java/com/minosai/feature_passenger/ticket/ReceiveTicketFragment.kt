@@ -4,16 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.minosai.common.Constants
 import com.minosai.common.base.BaseChirpFragment
+import com.minosai.common.base.BaseFragment
 import com.minosai.common.base.BaseViewModel
 import com.minosai.common.extensions.show
+import com.minosai.feature_passenger.PassengerActivity
 import com.minosai.feature_passenger.R
-import io.chirp.chirpsdk.ChirpSDK
 import kotlinx.android.synthetic.main.receive_ticket_fragment.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class ReceiveTicketFragment : BaseChirpFragment() {
+class ReceiveTicketFragment : BaseFragment() {
 
     private val viewModel by viewModel<ReceiveTicketViewModel>()
 
@@ -40,7 +40,7 @@ class ReceiveTicketFragment : BaseChirpFragment() {
     }
 
     private fun receiveTicket() {
-        chirp?.onReceived { payload, _ ->
+        (requireActivity() as PassengerActivity).chirp?.onReceived { payload, _ ->
             activity?.runOnUiThread {
                 payload?.let {
                     val identifier = String(it)
@@ -51,15 +51,5 @@ class ReceiveTicketFragment : BaseChirpFragment() {
                 }
             }
         }
-    }
-
-    override fun getFragmentName() = "passenger receive ticket"
-
-    override fun initializeChirp() {
-        chirp = ChirpSDK(
-            requireContext(),
-            Constants.CHIRP_APP_KEY,
-            Constants.CHIRP_APP_SECRET
-        ).apply { setConfig(Constants.CHIRP_APP_CONFIG) }
     }
 }

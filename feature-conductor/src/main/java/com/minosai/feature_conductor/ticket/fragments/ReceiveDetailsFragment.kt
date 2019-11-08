@@ -5,18 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.minosai.common.Constants
 import com.minosai.common.base.BaseChirpFragment
+import com.minosai.common.base.BaseFragment
 import com.minosai.common.base.BaseViewModel
 import com.minosai.common.extensions.hide
 import com.minosai.common.extensions.show
+import com.minosai.feature_conductor.ConductorActivity
 import com.minosai.feature_conductor.R
 import com.minosai.feature_conductor.ticket.ConductorTicketViewModel
-import io.chirp.chirpsdk.ChirpSDK
 import kotlinx.android.synthetic.main.fragment_receive_details.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
-class ReceiveDetailsFragment : BaseChirpFragment() {
+class ReceiveDetailsFragment : BaseFragment() {
 
     private val viewModel by sharedViewModel<ConductorTicketViewModel>()
 
@@ -48,7 +48,7 @@ class ReceiveDetailsFragment : BaseChirpFragment() {
     }
 
     private fun receiveDetails() {
-        chirp?.onReceived { payload, _ ->
+        (requireActivity() as ConductorActivity).chirp?.onReceived { payload, _ ->
             activity?.runOnUiThread {
                 payload?.let {
                     val identifier = String(it)
@@ -59,15 +59,5 @@ class ReceiveDetailsFragment : BaseChirpFragment() {
                 }
             }
         }
-    }
-
-    override fun getFragmentName() = "conductor receive details"
-
-    override fun initializeChirp() {
-        chirp = ChirpSDK(
-            requireContext(),
-            Constants.CHIRP_APP_KEY,
-            Constants.CHIRP_APP_SECRET
-        ).apply { setConfig(Constants.CHIRP_APP_CONFIG) }
     }
 }
