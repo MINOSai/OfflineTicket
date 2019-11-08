@@ -1,9 +1,9 @@
 package com.minosai.feature_passenger.home
 
-import com.minosai.common.base.BaseViewModel
+import androidx.lifecycle.ViewModel
 import com.minosai.repository.PassengerRepository
 
-class PassengerHomeViewModel (private val repo: PassengerRepository) : BaseViewModel() {
+class PassengerHomeViewModel(private val repo: PassengerRepository) : ViewModel() {
 
     fun fetchAllTickets() = repo.getAllTickets()
 

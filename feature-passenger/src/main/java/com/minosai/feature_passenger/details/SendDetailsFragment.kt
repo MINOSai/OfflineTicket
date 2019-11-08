@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.minosai.common.base.BaseChirpFragment
-import com.minosai.common.base.BaseFragment
-import com.minosai.common.base.BaseViewModel
 import com.minosai.common.extensions.show
 import com.minosai.feature_passenger.PassengerActivity
 import com.minosai.feature_passenger.R
@@ -15,11 +13,9 @@ import kotlinx.android.synthetic.main.send_details_fragment.*
 import kotlinx.android.synthetic.main.send_details_fragment.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class SendDetailsFragment : BaseFragment() {
+class SendDetailsFragment : Fragment() {
 
     private val viewModel by viewModel<SendDetailsViewModel>()
-
-    override fun getViewModel(): BaseViewModel = viewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

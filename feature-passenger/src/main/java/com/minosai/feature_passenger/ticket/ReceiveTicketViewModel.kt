@@ -1,14 +1,14 @@
 package com.minosai.feature_passenger.ticket
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.minosai.common.base.BaseViewModel
 import com.minosai.model.Ticket
 import com.minosai.repository.PassengerRepository
 import kotlinx.coroutines.launch
 
-class ReceiveTicketViewModel(private val repo: PassengerRepository) : BaseViewModel() {
+class ReceiveTicketViewModel(private val repo: PassengerRepository) : ViewModel() {
 
     private fun addTicket(ticket: Ticket) = viewModelScope.launch {
         repo.addTicket(ticket)

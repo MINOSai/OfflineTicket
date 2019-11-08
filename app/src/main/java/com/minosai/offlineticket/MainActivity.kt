@@ -8,8 +8,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.navigation.NavController
-import androidx.navigation.ui.AppBarConfiguration
 import com.minosai.common.Constants
 import com.minosai.common.extensions.toast
 import com.minosai.feature_auth.AuthActivity
@@ -25,10 +23,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val prefs by inject<SharedPreferences>()
-
-    private lateinit var navController: NavController
-
-    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

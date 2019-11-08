@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.minosai.common.base.BaseFragment
-import com.minosai.common.base.BaseViewModel
 import com.minosai.common.extensions.toast
 import com.minosai.feature_passenger.R
 import com.minosai.feature_passenger.home.views.TicketAdapter
@@ -16,11 +15,9 @@ import com.minosai.model.Result
 import kotlinx.android.synthetic.main.passenger_home_fragment.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class PassengerHomeFragment : BaseFragment() {
+class PassengerHomeFragment : Fragment() {
 
     private val viewModel: PassengerHomeViewModel by viewModel()
-
-    override fun getViewModel(): BaseViewModel = viewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

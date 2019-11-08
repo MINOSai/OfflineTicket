@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.minosai.common.base.BaseChirpFragment
-import com.minosai.common.base.BaseFragment
-import com.minosai.common.base.BaseViewModel
+import androidx.fragment.app.Fragment
 import com.minosai.feature_conductor.ConductorActivity
 import com.minosai.feature_conductor.ticket.ConductorTicketViewModel
 import kotlinx.android.synthetic.main.fragment_send_ticket.*
@@ -14,11 +12,9 @@ import kotlinx.android.synthetic.main.fragment_send_ticket.view.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 
-class SendTicketFragment : BaseFragment() {
+class SendTicketFragment : Fragment() {
 
     private val viewModel by sharedViewModel<ConductorTicketViewModel>()
-
-    override fun getViewModel(): BaseViewModel = viewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

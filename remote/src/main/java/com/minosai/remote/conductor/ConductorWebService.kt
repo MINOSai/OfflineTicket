@@ -11,9 +11,6 @@ interface ConductorWebService {
     @POST("ticket/bulk/")
     suspend fun uploadTickets(@Body tickets: List<Ticket>): Response<List<Ticket>>
 
-    @POST("ticket/")
-    suspend fun uploadTicket(@Body ticket: Ticket): Response<String>
-
     @GET("ticket/")
     suspend fun fetchTickets() : Response<List<Ticket>>
 }

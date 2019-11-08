@@ -4,20 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.minosai.common.base.BaseChirpFragment
-import com.minosai.common.base.BaseFragment
-import com.minosai.common.base.BaseViewModel
+import androidx.fragment.app.Fragment
 import com.minosai.common.extensions.show
 import com.minosai.feature_passenger.PassengerActivity
 import com.minosai.feature_passenger.R
 import kotlinx.android.synthetic.main.receive_ticket_fragment.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class ReceiveTicketFragment : BaseFragment() {
+class ReceiveTicketFragment : Fragment() {
 
     private val viewModel by viewModel<ReceiveTicketViewModel>()
-
-    override fun getViewModel(): BaseViewModel = viewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

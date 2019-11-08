@@ -1,5 +1,6 @@
 package com.minosai.local.di
 
+import com.minosai.common.Constants.PREF
 import com.minosai.local.conductor.ConductorDatabase
 import com.minosai.local.passenger.PassengerDatabase
 import com.minosai.local.util.PreferenceHelper
@@ -8,8 +9,6 @@ import org.koin.dsl.module.module
 
 private const val CONDUCTOR_DATABASE = "CONDUCTOR_DATABASE"
 private const val PASSENGER_DATABASE = "PASSENGER_DATABASE"
-
-private const val PREF = "com.minosai.offlineticket.prefs"
 
 val localModule = module {
 

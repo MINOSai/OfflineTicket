@@ -26,18 +26,6 @@ class ConductorRepository(
         }
     )
 
-    fun getAllTickets() = makeRequestAndSave(
-        databaseQuery = {
-            dao.getAllTickets()
-        },
-        networkCall = {
-            webClient.fetchTickets()
-        },
-        saveCallResult = {
-            dao.save(it)
-        }
-    )
-
     fun getTicketsFromDb() = dao.getAllTickets()
 
     suspend fun addTicket(ticket: Ticket) = withContext(Dispatchers.IO) {

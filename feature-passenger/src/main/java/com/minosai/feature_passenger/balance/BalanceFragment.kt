@@ -4,23 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.minosai.common.base.BaseFragment
-import com.minosai.common.base.BaseViewModel
 import com.minosai.common.extensions.getInput
 import com.minosai.common.extensions.toast
-
 import com.minosai.feature_passenger.R
 import com.minosai.model.Result
 import kotlinx.android.synthetic.main.balance_fragment.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class BalanceFragment : BaseFragment() {
+class BalanceFragment : Fragment() {
 
     private val viewModel by viewModel<BalanceViewModel>()
-
-    override fun getViewModel(): BaseViewModel = viewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
