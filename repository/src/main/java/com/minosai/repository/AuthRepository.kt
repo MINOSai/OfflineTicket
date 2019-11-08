@@ -46,7 +46,4 @@ class AuthRepository(
         prefs[Constants.PREF_PROFILE_TYPE] = profileType
     }
 
-    fun storePhNo(phoneNumber: String) {
-        prefs[Constants.PREF_PHONE_NUMBER] = phoneNumber
-    }
 }

@@ -5,10 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.minosai.common.base.BaseFragment
-import com.minosai.common.base.BaseViewModel
 import com.minosai.common.extensions.getInput
 import com.minosai.common.extensions.isValidInput
 import com.minosai.common.extensions.isValidPhone
@@ -20,11 +19,9 @@ import com.minosai.model.Result
 import kotlinx.android.synthetic.main.fragment_signup.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
-class SignupFragment : BaseFragment() {
+class SignupFragment : Fragment() {
 
     private val viewModel by sharedViewModel<AuthViewModel>()
-
-    override fun getViewModel(): BaseViewModel = viewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

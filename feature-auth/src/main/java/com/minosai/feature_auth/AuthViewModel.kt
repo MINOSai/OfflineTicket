@@ -1,9 +1,9 @@
 package com.minosai.feature_auth
 
-import com.minosai.common.base.BaseViewModel
+import androidx.lifecycle.ViewModel
 import com.minosai.repository.AuthRepository
 
-class AuthViewModel(private val repo: AuthRepository) : BaseViewModel() {
+class AuthViewModel(private val repo: AuthRepository) : ViewModel() {
 
     var profileType = 0
 

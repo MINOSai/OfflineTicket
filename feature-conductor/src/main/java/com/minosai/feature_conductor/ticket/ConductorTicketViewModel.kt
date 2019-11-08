@@ -1,16 +1,16 @@
 package com.minosai.feature_conductor.ticket
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.minosai.common.base.BaseViewModel
 import com.minosai.model.Ticket
 import com.minosai.repository.ConductorRepository
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ConductorTicketViewModel(private val repo: ConductorRepository) : BaseViewModel() {
+class ConductorTicketViewModel(private val repo: ConductorRepository) : ViewModel() {
 
     private var passengerId = 0
     private lateinit var id: String

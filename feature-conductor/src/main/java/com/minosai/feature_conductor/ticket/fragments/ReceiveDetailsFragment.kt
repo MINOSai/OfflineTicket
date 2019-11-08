@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.minosai.common.base.BaseChirpFragment
-import com.minosai.common.base.BaseFragment
-import com.minosai.common.base.BaseViewModel
 import com.minosai.common.extensions.hide
 import com.minosai.common.extensions.show
 import com.minosai.feature_conductor.ConductorActivity
@@ -16,11 +14,9 @@ import com.minosai.feature_conductor.ticket.ConductorTicketViewModel
 import kotlinx.android.synthetic.main.fragment_receive_details.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
-class ReceiveDetailsFragment : BaseFragment() {
+class ReceiveDetailsFragment : Fragment() {
 
     private val viewModel by sharedViewModel<ConductorTicketViewModel>()
-
-    override fun getViewModel(): BaseViewModel = viewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

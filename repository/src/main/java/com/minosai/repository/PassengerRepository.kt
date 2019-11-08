@@ -20,27 +20,6 @@ class PassengerRepository(
     private val prefs: SharedPreferences
 ) : BaseRepo() {
 
-//    fun getAllTickets() = liveData(Dispatchers.IO) {
-//        emit(Result.loading())
-//
-//        val source = dao.getAllTickets().map { Result.success(it) }
-//        emitSource(source)
-//
-//        val response = webClient.fetchTickets()
-//        when (response.status) {
-//            Result.Status.SUCCESS -> {
-//                dao.save(response.data!!)
-//            }
-//            Result.Status.ERROR -> {
-//                emit(Result.error(response.message!!))
-//                emitSource(source)
-//            }
-//            else -> {
-//
-//            }
-//        }
-//    }
-
     fun getAllTickets() = makeRequestAndSave(
         databaseQuery = {
             dao.getAllTickets()
@@ -52,14 +31,6 @@ class PassengerRepository(
             dao.save(it)
         }
     )
-
-    fun getPhoneNumber() =
-        prefs[Constants.PREF_PHONE_NUMBER, ""] ?: ""
-
-    fun addBalance(amount: Int) {
-        val balance = getBalance()
-        setBalance(balance + amount)
-    }
 
     fun subtractBalance(amount: Int) {
         val balance = getBalance()

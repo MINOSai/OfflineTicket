@@ -1,9 +1,9 @@
 package com.minosai.feature_passenger.balance
 
-import com.minosai.common.base.BaseViewModel
+import androidx.lifecycle.ViewModel
 import com.minosai.repository.PassengerRepository
 
-class BalanceViewModel (private val repo: PassengerRepository) : BaseViewModel() {
+class BalanceViewModel(private val repo: PassengerRepository) : ViewModel() {
 
     fun getBalance() = repo.getBalance()
 

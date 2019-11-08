@@ -2,7 +2,7 @@ package com.minosai.common
 
 object Constants {
 
-    const val PACKAGE_NAME = "com.minosai.common"
+    const val PACKAGE_NAME = "com.minosai.offlineticket"
 
     const val PREF = "$PACKAGE_NAME.prefs"
 
