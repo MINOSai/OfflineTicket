@@ -1,11 +1,13 @@
 package com.minosai.model
 
+import android.util.Log
+
 data class Result<out T>(val status: Status, val data: T?, val message: String?) {
 
     enum class Status {
+        LOADING,
         SUCCESS,
-        ERROR,
-        LOADING
+        ERROR
     }
 
     companion object {
@@ -14,6 +16,7 @@ data class Result<out T>(val status: Status, val data: T?, val message: String?)
         }
 
         fun <T> error(message: String, data: T? = null): Result<T> {
+            Log.d("OFFLINE_TICKET", "Result error: $message")
             return Result(Status.ERROR, data, message)
         }
 

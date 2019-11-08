@@ -1,4 +1,4 @@
-package com.minosai.repository
+package com.minosai.repository.util
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
@@ -8,7 +8,11 @@ import kotlinx.coroutines.Dispatchers
 
 open class BaseRepo {
 
-    protected fun <T> makeRequest(request: suspend () -> Result<T>): LiveData<Result<T?>> =
+    protected fun <T> makeRequest(
+        onSuccess: suspend (data: T?) -> Unit = {},
+        onError: suspend (message: String?) -> Unit = {},
+        request: suspend () -> Result<T>
+    ): LiveData<Result<T?>> =
         liveData(Dispatchers.IO) {
             emit(Result.loading())
 
@@ -17,9 +21,11 @@ open class BaseRepo {
             when (response.status) {
                 Result.Status.SUCCESS -> {
                     emit(Result.success(response.data))
+                    onSuccess.invoke(response.data)
                 }
                 Result.Status.ERROR -> {
                     emit(Result.error(response.message!!))
+                    onError.invoke(response.message)
                 }
                 else -> {
 

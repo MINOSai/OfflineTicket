@@ -30,9 +30,6 @@ class PassengerHomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val balance = viewModel.getBalance().toString()
-        home_text_balance.text = "Balance: $balance"
-
         home_button_add_balance.setOnClickListener {
             findNavController().navigate(R.id.action_passengerHomeFragment_to_balanceFragment)
         }
@@ -47,18 +44,26 @@ class PassengerHomeFragment : BaseFragment() {
             adapter = ticketAdapter
         }
 
+        home_text_balance.text = "Balance: ${viewModel.getBalance().toString()}"
+
+        passenger_home_button_refresh.setOnClickListener {
+            fetchBalance()
+        }
+
         viewModel.fetchAllTickets().observe(this, Observer { result ->
             when (result.status) {
+                Result.Status.LOADING -> toast("Fetching tickets...")
                 Result.Status.SUCCESS -> ticketAdapter.update(result.data ?: listOf())
                 Result.Status.ERROR -> {
-                    //TODO
-                    toast("An error occurred")
-                }
-                Result.Status.LOADING -> {
-                    //TODO
-                    toast("Fetching tickets...")
                 }
             }
+        })
+    }
+
+    private fun fetchBalance() {
+        toast("Updating balance...")
+        viewModel.fetchBalance().observe(this, Observer { balance ->
+            home_text_balance.text = "Balance: $balance"
         })
     }
 }

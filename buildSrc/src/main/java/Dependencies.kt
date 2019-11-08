@@ -40,6 +40,7 @@ object Versions {
     //Networking
     const val gson = "2.8.5"
     const val retrofit = "2.6.0"
+    const val okHttp = "3.12.1"
 
     //UI
     const val constraintLayout = "2.0.0-beta2"
@@ -48,7 +49,7 @@ object Versions {
     const val recyclerView = "1.1.0-beta04"
     const val rippleAnim = "1.0.1"
 
-    const val chirp = "3.8.+"
+    const val chirp = "3.10.+"
 
     //Test
     const val junit = "4.12"
@@ -85,6 +86,7 @@ object Libs {
     const val gson = "com.google.code.gson:gson:" + Versions.gson
     const val retrofit = "com.squareup.retrofit2:retrofit:" + Versions.retrofit
     const val retrofitGson = "com.squareup.retrofit2:converter-gson:" + Versions.retrofit
+    const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:" + Versions.okHttp
 
     //UI
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:" + Versions.constraintLayout

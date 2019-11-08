@@ -14,11 +14,10 @@ import com.minosai.feature_conductor.R
 import com.minosai.feature_conductor.home.views.TicketAdapter
 import com.minosai.model.Result
 import kotlinx.android.synthetic.main.conductor_home_fragment.*
-import kotlinx.android.synthetic.main.conductor_home_fragment.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ConductorHomeFragment : BaseFragment() {
-    
+
     override fun getViewModel(): BaseViewModel = viewModel
 
     private val viewModel by viewModel<ConductorHomeViewModel>()
@@ -33,9 +32,19 @@ class ConductorHomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.home_button_new_ticket.setOnClickListener {
+        home_button_new_ticket.setOnClickListener {
             findNavController()
                 .navigate(R.id.action_conductorHomeFragment_to_receiveDetailsFragment)
+        }
+
+        home_button_upload_tickets.setOnClickListener {
+            viewModel.uploadTickets().observe(this, Observer { result ->
+                when (result.status) {
+                    Result.Status.LOADING -> toast("Uploading tickets...")
+                    Result.Status.SUCCESS -> toast("Tickets uploaded successfully")
+                    Result.Status.ERROR -> toast(result.message!!)
+                }
+            })
         }
 
         val ticketAdapter = TicketAdapter()
@@ -44,18 +53,8 @@ class ConductorHomeFragment : BaseFragment() {
             adapter = ticketAdapter
         }
 
-        viewModel.getTickets().observe(this, Observer { result ->
-            when (result.status) {
-                Result.Status.SUCCESS -> ticketAdapter.update(result.data ?: listOf())
-                Result.Status.ERROR -> {
-                    //TODO
-                    toast("An error occurred")
-                }
-                Result.Status.LOADING -> {
-                    //TODO
-                    toast("Fetching tickets...")
-                }
-            }
+        viewModel.getTickets().observe(this, Observer { tickets ->
+            ticketAdapter.update(tickets)
         })
     }
 

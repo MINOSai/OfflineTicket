@@ -7,8 +7,5 @@ class BalanceViewModel (private val repo: PassengerRepository) : BaseViewModel()
 
     fun getBalance() = repo.getBalance()
 
-    fun setBalance(balance: Int) =
-        repo.setBalance(balance)
-
-    fun addBalance(amount: Int) = repo.addBalance(amount)
+    fun addBalanceToServer(amount: Int) = repo.addBalanceToServer(amount)
 }

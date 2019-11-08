@@ -7,6 +7,6 @@ import org.koin.dsl.module.module
 
 val repositoryModule = module {
     factory { AuthRepository(get(), get()) }
-    factory { ConductorRepository(get(), get()) }
+    factory { ConductorRepository(get(), get(), get()) }
     factory { PassengerRepository(get(), get(), get()) }
 }

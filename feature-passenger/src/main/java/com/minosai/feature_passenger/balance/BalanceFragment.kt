@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.minosai.common.base.BaseFragment
 import com.minosai.common.base.BaseViewModel
 import com.minosai.common.extensions.getInput
+import com.minosai.common.extensions.toast
 
 import com.minosai.feature_passenger.R
+import com.minosai.model.Result
 import kotlinx.android.synthetic.main.balance_fragment.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -33,9 +36,18 @@ class BalanceFragment : BaseFragment() {
         view.balance_text_current.text = "Current Balance: $balance"
 
         view.balance_button_pay.setOnClickListener {
-            val newBalance = view.balance_input_amount.getInput().toInt()
-            viewModel.addBalance(newBalance)
-            findNavController().popBackStack()
+            val amount = view.balance_input_amount.getInput().toInt()
+            viewModel.addBalanceToServer(amount).observe(this, Observer { result ->
+                when (result.status) {
+                    Result.Status.LOADING -> toast("Updating balance...")
+                    Result.Status.SUCCESS -> {
+                        toast("Balance updated successfully")
+                        findNavController().popBackStack()
+                    }
+                    Result.Status.ERROR -> toast(result.message!!)
+                }
+
+            })
         }
     }
 

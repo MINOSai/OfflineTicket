@@ -7,6 +7,7 @@ dependencies {
     implementation Libs.retrofit
     implementation Libs.retrofitGson
     implementation Libs.gson
+    implementation Libs.loggingInterceptor
 
     implementation Libs.koinAndroid
     implementation Libs.koinViewModel

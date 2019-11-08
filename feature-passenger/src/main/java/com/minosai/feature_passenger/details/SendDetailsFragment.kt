@@ -5,16 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.google.gson.Gson
 import com.minosai.common.base.BaseChirpFragment
+import com.minosai.common.base.BaseFragment
 import com.minosai.common.base.BaseViewModel
 import com.minosai.common.extensions.show
+import com.minosai.feature_passenger.PassengerActivity
 import com.minosai.feature_passenger.R
 import kotlinx.android.synthetic.main.send_details_fragment.*
 import kotlinx.android.synthetic.main.send_details_fragment.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class SendDetailsFragment : BaseChirpFragment() {
+class SendDetailsFragment : BaseFragment() {
 
     private val viewModel by viewModel<SendDetailsViewModel>()
 
@@ -32,7 +33,7 @@ class SendDetailsFragment : BaseChirpFragment() {
 
         send_details_ripple.startRippleAnimation()
 
-        sendDetails()
+//        sendDetails()
 
         view.send_details_button_resend.setOnClickListener {
             sendDetails()
@@ -44,16 +45,8 @@ class SendDetailsFragment : BaseChirpFragment() {
     }
 
     private fun sendDetails() {
-        val detailsList = listOf(
-            viewModel.getPhoneNumber(),
-            viewModel.getBalance().toString()
-        )
-
-        val detailsJson = Gson().toJson(detailsList)
-        val payload = detailsJson.toByteArray()
-
-        val error = chirpSend.send(payload)
-        if (error.code > 0) {
+        val error = (requireActivity() as PassengerActivity).chirp?.send(viewModel.getPayload())
+        if (error?.code!! > 0) {
             showErrorMessage()
         } else {
             send_details_text_placeholder.text = "Details sent successfully!"

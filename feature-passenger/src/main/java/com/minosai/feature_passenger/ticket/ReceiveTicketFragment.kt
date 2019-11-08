@@ -4,17 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.minosai.common.base.BaseChirpFragment
+import com.minosai.common.base.BaseFragment
 import com.minosai.common.base.BaseViewModel
 import com.minosai.common.extensions.show
+import com.minosai.feature_passenger.PassengerActivity
 import com.minosai.feature_passenger.R
-import com.minosai.model.Ticket
 import kotlinx.android.synthetic.main.receive_ticket_fragment.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class ReceiveTicketFragment : BaseChirpFragment() {
+class ReceiveTicketFragment : BaseFragment() {
 
     private val viewModel by viewModel<ReceiveTicketViewModel>()
 
@@ -41,27 +40,14 @@ class ReceiveTicketFragment : BaseChirpFragment() {
     }
 
     private fun receiveTicket() {
-        chirpReceive.onReceived { payload, _ ->
+        (requireActivity() as PassengerActivity).chirp?.onReceived { payload, _ ->
             activity?.runOnUiThread {
                 payload?.let {
                     val identifier = String(it)
+                    viewModel.addTicketUsingIdentifier(identifier)
+
                     rec_ticket_text_placeholder.text = identifier
                     rec_ticket_button_retry.show()
-
-                    val collectionType = object : TypeToken<List<String>>() {}.type
-                    val ticketList = Gson().fromJson<List<String>>(identifier, collectionType)
-
-                    viewModel.addTicket(
-                        Ticket(
-                            ticketList[0],
-                            ticketList[1],
-                            ticketList[2],
-                            ticketList[3],
-                            null
-                        )
-                    )
-
-                    viewModel.reduceBalance(ticketList[3].toInt())
                 }
             }
         }

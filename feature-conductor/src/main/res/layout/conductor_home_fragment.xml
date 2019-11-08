@@ -25,6 +25,13 @@
                 android:text="Welcome Conductor"
                 android:textSize="26sp" />
 
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Pending tickets" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_conductor_home"
                 android:layout_width="match_parent"
@@ -38,15 +45,30 @@
 
     <Button
         android:id="@+id/home_button_new_ticket"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        android:text="new ticket"
         android:backgroundTint="@color/colorPrimary"
+        android:text="new ticket"
         android:textColor="@android:color/white"
         app:iconTint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/home_button_upload_tickets" />
+
+    <Button
+        android:id="@+id/home_button_upload_tickets"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="16dp"
+        android:text="upload tickets"
+        app:layout_constraintBottom_toBottomOf="@+id/home_button_new_ticket"
+        app:layout_constraintEnd_toStartOf="@+id/home_button_new_ticket"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
